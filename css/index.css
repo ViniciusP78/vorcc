@@ -49,7 +49,7 @@ body{
     margin-top:3px;
     border-bottom-width: 2px;
     border-bottom-style: solid;
-    border-bottom-color: #537BD8;
+    border-bottom-color: #39B1AC;
 
     transform: scaleX(0);
     transition: 0.3s;
@@ -72,8 +72,8 @@ body{
 }
 #menu #menu-nav #button:hover{
     /* background-color: #537BD8; */
-    border-color: #537BD8;
-    color: #537BD8;
+    border-color: #39B1AC;
+    color: #39B1AC;
 }
 /* ~~CONTEÚDO DO CORPO~~ */
 @keyframes word-surge{
@@ -97,24 +97,76 @@ body{
     font-family: 'Lobster', cursive;
     letter-spacing: 2px;
     font-size: 48px;
-
+    opacity: 0;
     position: relative;
-    animation: word-surge 2s;
+    animation: word-surge 2s forwards;
 }
-#content #words-wrapper .vorcc-word#1{animation-delay: 1s;}
-#content #words-wrapper .vorcc-word#2{animation-delay: 2s;}
-#content #words-wrapper .vorcc-word#3{animation-delay: 3s;}
+#content #words-wrapper .vorcc-word span{
+    background-color: #39B1AC;
+    color:white;
+    padding:5px;
+    margin-right:5px;
 
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+#content #words-wrapper .vorcc-word#a{animation-delay: 0.5s;}
+#content #words-wrapper .vorcc-word#b{animation-delay: 1s;}
+#content #words-wrapper .vorcc-word#c{animation-delay: 1.5s;}
+
+/* ----- LOGIN.PHP -----*/
 .login-container {
     width:350px;
     height:450px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+
     margin: 0 auto;
     margin-top:75px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
     box-sizing: border-box;
-    padding:50px
 
+}
+.login-container #title{
+    background-color: #39B1AC;
+    box-sizing: border-box;
+    padding:10px;
+    font-family: 'Lobster', cursive;
+    letter-spacing: 2px;
+    color:white;
+    font-size:23;
+}
+.login-container #form-container{
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    display: inline-flex;
+    flex:1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-container #form-container .form-input{
+    background-color: transparent;
+    border:none;
+    padding:10px;
+    outline: none;
+}
+.login-container #form-container .input-mask{
+    background-color: #39B1AC;
+    width:200px;
+    height:1px;
+    z-index:999;
+    transform:scaleX(0);
+    transition: 0.2s;
+}
+.login-container #form-container .form-input:focus + .input-mask{
+    transform: scaleX(1);
+}
+
+#empresa, #pin {
+    display: none;
 }
