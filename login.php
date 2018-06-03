@@ -8,12 +8,13 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-
+        <link rel="stylesheet" href="fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.min.css">
     </head>
     <body>
         <form method="post" class="login-container">
             <div id="title">Vorcc</div>
             <div id="form-container">
+                <i class="fas fa-address-book"></i>
                 <input type="text" placeholder="Login" name="login" class="form-input" required><div class="input-mask"></div><br>
                 <input type="password" placeholder="Senha" name="senha" class="form-input" required><div class="input-mask"></div><br>
                 <input type="submit" value="Entrar" name="submit">

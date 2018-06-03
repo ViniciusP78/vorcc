@@ -151,13 +151,17 @@ body{
 }
 .login-container #form-container .form-input{
     background-color: transparent;
-    border:none;
+    width:179px;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius:0px;
+
     padding:10px;
     outline: none;
 }
 .login-container #form-container .input-mask{
     background-color: #39B1AC;
-    width:200px;
+    width:201px;
     height:1px;
     z-index:999;
     transform:scaleX(0);
