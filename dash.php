@@ -11,18 +11,27 @@
     </head>
     <body>
         <?php
-        session_start();
-        if(isset($_SESSION['nome'])){
-            header("Location: dash.php");
+        include('php/conexao.php');
+
+        if(!isset($_SESSION['nome'])){
+            header("Location: home.php");
         }
+
+        $query = $conn->prepare("SELECT nm_empresa FROM tb_empresa WHERE cd_empresa = :emp");
+        $query->bindValue(":emp", $_SESSION['id_empresa']);
+        $query->execute();
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+            $nm_empresa = $row['nm_empresa'];
+        }
+
         ?>
         <nav id="menu">
-            <span id="logo"> Vorcc </span>
+            <span id="logo"> <?php echo $nm_empresa ?> </span>
 
             <div id="menu-nav">
-                <a href="#" class="nav-item"> Como usar </a>
-                <a href="cadastro.php" class="nav-item"> Criar conta </a>
-                <a href="login.php" id="button"> Entrar </a>
+                <a href="perfil.php" class="nav-item"> <?php echo $_SESSION['nome']; ?> </a>
+                <a href="php/logout.php" id="button"> Quitar </a>
             </div>
         </nav>
 

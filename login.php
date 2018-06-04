@@ -23,7 +23,7 @@
 
         <?php
             if(isset($_SESSION['nome'])){
-                header("Location: home.php");
+                header("Location: dash.php");
             }
             if(isset($_POST['login'])){
                 $query = $conn->prepare("SELECT * FROM dono WHERE nm_senha = :senha AND nm_login = :login");
@@ -34,9 +34,9 @@
                 if($query->rowCount() == 1){
                     while($row = $query->fetch(PDO::FETCH_ASSOC)){
                         $_SESSION['id_empresa'] = $row['id_empresa'];
-                        $_SESSION['cd_dono'] = $row['cd_usuario'];
+                        $_SESSION['cd_usuario'] = $row['cd_usuario'];
                         $_SESSION['nome'] = $row['nm_usuario'];
-                        header("Location: home.php");
+                        header("Location: dash.php");
                     }
                 }else{
                     echo '??';

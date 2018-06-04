@@ -10,6 +10,22 @@
 
     </head>
     <body>
+        <?php include('php/conexao.php'); ?>
+
+        <div class="sess" style="position:absolute">
+            <?php
+                if(isset($_SESSION['nome'])){
+                    echo $_SESSION['nome'].'<br>'.$_SESSION['cd_usuario'].'<br>'.$_SESSION['id_empresa'];
+                }
+            ?>
+        </div>
+
+        <?php
+            if(isset($_SESSION['nome'])){
+                header("Location: dash.php");
+            }
+        ?>
+
         <?php
         function generateRandomString($length = 32) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*+';
@@ -75,7 +91,7 @@
                 echo '2';
                 if(isset($_POST['nome_empresa']) && isset($_POST['cnpj'])){
                     echo '1';
-                    include('php/conexao.php');
+
                     $query = $conn->prepare("INSERT INTO tb_empresa VALUES(null, :nome, :cnpj, DEFAULT, :fornecedor, :pin)");
                     $query->bindValue(":nome", $_POST['nome_empresa']);
                     $query->bindValue(":cnpj", $_POST['cnpj']);
@@ -110,13 +126,15 @@
                         $_SESSION['nome'] = $_POST['nome'];
                         $_SESSION['cd_usuario'] = $row['cd_usuario'];
                         $_SESSION['id_empresa'] = $row['id_empresa'];
-                        echo $_SESSION['nome'].' '.$_SESSION['cd_usuario'].' '.$_SESSION['id_empresa'];
+                        header("Location: dash.php");
+
                     }
                     /*header("Location: home.php");*/
                 }
             }
             else{
-                include('php/conexao.php');
+                echo "4";
+
                 $query = $conn->prepare("SELECT * FROM tb_empresa WHERE vl_pin = :pin");
                 $query->bindValue(":pin", $_POST['pin']);
                 $query->execute();
@@ -125,6 +143,10 @@
                     $cd_empresa = $row['cd_empresa'];
                 }
 
+                if (!isset($cd_empresa)) {
+                    echo "PIN inválido!";
+                } else {
+                    echo "5";
                 $query = $conn->prepare("INSERT INTO dono VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
                 $query->bindValue(":nome", $_POST['nome']);
                 $query->bindValue(":cpf", $_POST['cpf']);
@@ -134,19 +156,20 @@
                 $query->execute();
 
                 /* SELECIONANDO O ID DA EMPRESA PRA FAZER O LOGIN E REDIRECIONAR PRA DASHBOARD */
-                $query = $conn->prepare("SELECT id_empresa, cd_usuario FROM dono WHERE cpf = :cpf");
+                $query = $conn->prepare("SELECT id_empresa, cd_usuario FROM dono WHERE nr_cpf = :cpf");
                 $query->bindValue(":cpf", $_POST['cpf']);
                 $query->execute();
 
                 while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                    session_start();
+                    echo "6";
                     $_SESSION['nome'] = $_POST['nome'];
                     $_SESSION['cd_usuario'] = $row['cd_usuario'];
                     $_SESSION['id_empresa'] = $row['id_empresa'];
+                    echo $_SESSION['nome'].' '.$_SESSION['cd_usuario'].' '.$_SESSION['id_empresa'];
                 }
-                header("Location: home.php");
             }
-        }
+            }
+        } else {echo "Escreva os campo Tudo!;";}
         ?>
 
         </div>
