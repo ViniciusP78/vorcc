@@ -12,12 +12,24 @@
     </head>
     <body>
         <form method="post" class="login-container">
-            <div id="title">Vorcc</div>
+            <div id="title">Faça seu login</div>
             <div id="form-container">
-                <i class="fas fa-address-book"></i>
-                <input type="text" placeholder="Login" name="login" class="form-input" required><div class="input-mask"></div><br>
-                <input type="password" placeholder="Senha" name="senha" class="form-input" required><div class="input-mask"></div><br>
-                <input type="submit" value="Entrar" name="submit">
+                <div class="icon-mask">
+                    <input type="text" placeholder="Login" name="login" class="form-input">
+                    <i class="fas fa-user"></i>
+                </div>
+                <br>
+                <div class="icon-mask">
+                    <input type="password" placeholder="Senha" name="senha" class="form-input">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <br>
+
+                <div class="form-submit-container">
+                    <a href="cadastro.php">Não possui conta?</a>
+                    <input type="submit" value="Entrar" name="submit" id="submit-btn">
+                    <label for="submit-btn" class="form-submit"><i class="fas fa-sign-in-alt"></i></label>
+                </div>
             </div>
         </form>
 
@@ -25,7 +37,8 @@
             if(isset($_SESSION['nome'])){
                 header("Location: dash.php");
             }
-            if(isset($_POST['login'])){
+
+            if(isset($_POST['login']) && isset($_POST['senha'])){
                 $query = $conn->prepare("SELECT * FROM dono WHERE nm_senha = :senha AND nm_login = :login");
                 $query->bindValue(':senha', md5($_POST['senha']));
                 $query->bindValue(':login', $_POST['login']);
