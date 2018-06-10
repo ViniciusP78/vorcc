@@ -5,9 +5,10 @@
         <meta charset="utf-8">
         <title> Vorcc </title>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/cadastro.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-
+        <link rel="stylesheet" href="fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.min.css">
     </head>
     <body>
         <?php include('php/conexao.php'); ?>
@@ -37,14 +38,45 @@
             return $randomString;
         }
         ?>
-        <form method="post" class="login-container" action="">
-            Sou: Comprador<input type="radio" name="bool_fornecedor" value="0"> Fornecedor<input type="radio" name="bool_fornecedor" value="1">
-            <input type="text" placeholder="Nome Real" name="nome"><br>
-            <input type="number" placeholder="CPF (somente números)" name="cpf"><br>
-            <input type="text" placeholder="Login" name="login"><br>
-            <input type="password" placeholder="Senha" name="senha"><br>
-            <input type="password" placeholder="Repita a Senha" name="senha2"><br>
-            Já tem uma empresa cadastrada ? <br>
+        <form method="post" class="form-container" action="">
+            <div class="radio-wrapper">
+                <div style="display: inline-flex;align-items: center;justify-content: center;">
+                <input type="radio" name="bool_fornecedor" class="hidden radio" id="comprador" value="0">
+                <label for="comprador">Comprador</label>
+                </div>
+                Ou
+                <div style="display: inline-flex;align-items: center;justify-content: center;">
+                <input type="radio" name="bool_fornecedor" class="hidden radio" id="fornecedor" value="1">
+                <label for="fornecedor">Fornecedor</label>
+                </div>
+            </div>
+            
+            <div class="icon-mask">
+                <input type="text" placeholder="Nome Real" name="nome" class="form-input">
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="icon-mask">
+                <input type="number" placeholder="CPF (somente números)" name="cpf6" class="form-input">
+                <i class="fas fa-address-card"></i>
+            </div>
+
+            <div class="icon-mask">
+                <input type="text" placeholder="Login" name="login" class="form-input">
+                <i class="fas fa-user-circle"></i>
+            </div>
+
+            <div class="icon-mask">
+                <input type="password" placeholder="Senha" name="senha" class="form-input">
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <div class="icon-mask">
+                <input type="password" placeholder="Repita a Senha" name="senha2" class="form-input">
+                <i class="fas fa-lock"></i>
+            </div>
+
+            Já tem uma empresa? <br>
             Sim<input type="radio" name="empcads" value="0" onclick="switchs()">
             Não<input type="radio" name="empcads" value="1" onclick="switchs()">
             <div id="empresa">
@@ -54,7 +86,8 @@
             <div id="pin">
                 <input type="text" placeholder="PIN da empresa" name="pin"><br>
             </div>
-            <input type="submit" value="Entrar" name="submit">
+            <input type="submit" value="Entrar" name="submit" class="hidden" id="submit-btn">
+            <label for="submit-btn" class="form-submit">Entrar</label>
         </form>
 
         <script>

@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <title> Vorcc </title>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
         <link rel="stylesheet" href="fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.min.css">
@@ -27,7 +28,7 @@
 
                 <div class="form-submit-container">
                     <a href="cadastro.php">Não possui conta?</a>
-                    <input type="submit" value="Entrar" name="submit" id="submit-btn">
+                    <input type="submit" value="Entrar" name="submit" id="submit-btn" class="hidden">
                     <label for="submit-btn" class="form-submit"><i class="fas fa-sign-in-alt"></i></label>
                 </div>
             </div>

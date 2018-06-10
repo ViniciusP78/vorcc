@@ -1,8 +1,12 @@
 *{
     font-family: 'Lato', sans-serif;
 }
+html{
+    height: 100%;
+}
 body{
-    background-color: #ECECEC;
+    background-color: #E2E2E2;
+    height:100%;
     margin: 0px;
 
     display: flex;
@@ -13,7 +17,13 @@ body{
     font-family: 'Lato', sans-serif;
     font-size: 22px;
 }
-
+.hidden{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
 #menu{
     width:100%;
     margin-top:20px;
@@ -121,127 +131,6 @@ body{
 #content #words-wrapper .vorcc-word#b{animation-delay: 1s;}
 #content #words-wrapper .vorcc-word#c{animation-delay: 1.5s;}
 
-/* ------------------------------- LOGIN.PHP -------------------------------------*/
-
-.login-container {
-    
-
-    margin: 0 auto;
-    margin-top:75px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-    box-sizing: border-box;
-
-}
-.login-container #title{
-    background-color: #39B1AC;
-    box-sizing: border-box;
-    padding:10px;
-
-    color:white;
-    font-size:23;
-}
-.login-container #form-container{
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding:20px;
-
-    display: inline-flex;
-    flex:1 1 auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-.login-container #form-container .icon-mask{
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0px 0.1px 0px 0 rgba(0, 0, 0, 0.2), 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.2);
-}
-.login-container #form-container .icon-mask .fas{
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-
-    padding:7.8px;
-    font-size:20px;
-    color:#39B1AC;
-}
-.login-container #form-container .form-input{
-    background-color: transparent;
-    width:179px;
-    border:none;
-
-    padding:10px;
-    outline: none;
-    /**/
-}
-.login-container #form-container .form-input:focus + .fas{
-    border-col
-}
-
-.login-container #form-container .form-submit-container{ 
-    display: inline-flex;
-    flex: 1 1 auto;
-    align-self: flex-start;
-    align-items: center;
-    justify-content: center;
-}
-.login-container #form-container .form-submit-container a{
-    font-size:16px;
-    color:rgba(0, 0, 0, 0.8);
-}
-.login-container #form-container .form-submit-container #submit-btn{
-    visibility: hidden;
-    width:0px;
-    height: 0px;
-    margin:0px;
-    border:none;
-    padding:0px;
-    background-color: transparent;
-} 
-.login-container #form-container .form-submit-container .form-submit{
-    background:none;
-    background-color: transparent;
-    margin-left: 30px;
-    display: block;
-    border: 1px solid #39B1AC;
-    
-    padding:7px;
-    padding-left: 30px;
-    padding-right: 30px;
-
-    color:#39B1AC;
-    font-weight: normal;
-    font-size: 16px;
-    cursor:pointer;
-    position: relative;
-    z-index:1;
-}
-.login-container #form-container .form-submit-container .form-submit:hover{
-    transition:0.2s;
-    color:white;
-}
-.login-container #form-container .form-submit-container .form-submit:after{
-    content: "";
-    background-color: #39B1AC;
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 100%;
-    z-index:-1;
-    transition: top 0.2s ease-in;
-}
-.login-container #form-container .form-submit-container .form-submit:hover:after {
-    top:0;
-}
 #empresa, #pin {
     display: none;
 }
-/* ------------------ DASHBOARD -------------------------*/
-
