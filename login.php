@@ -14,9 +14,14 @@
         <form method="post" class="login-container">
             <div id="title">Vorcc</div>
             <div id="form-container">
-                <i class="fas fa-address-book"></i>
-                <input type="text" placeholder="Login" name="login" class="form-input" required><div class="input-mask"></div><br>
-                <input type="password" placeholder="Senha" name="senha" class="form-input" required><div class="input-mask"></div><br>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-address-book"></i>
+                    <input type="text" placeholder="Login" name="login" class="form-input" autocomplete="off" required><div class="input-mask"></div><br>
+                </div>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Senha" name="senha" class="form-input" required><div class="input-mask"></div><br>
+                </div>
                 <input type="submit" value="Entrar" name="submit">
             </div>
         </form>

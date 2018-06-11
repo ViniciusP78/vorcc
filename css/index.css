@@ -149,6 +149,9 @@ body{
     align-items: center;
     justify-content: center;
 }
+.login-container #form-container .input-icon-wrapper{
+    
+}
 .login-container #form-container .form-input{
     background-color: transparent;
     width:179px;
