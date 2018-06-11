@@ -1,5 +1,12 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
+html{
+    height: 100%;
+}
 body{
-    background-color: #ECECEC;
+    background-color: #E2E2E2;
+    height:100%;
     margin: 0px;
 
     display: flex;
@@ -10,7 +17,13 @@ body{
     font-family: 'Lato', sans-serif;
     font-size: 22px;
 }
-
+.hidden{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
 #menu{
     width:100%;
     margin-top:20px;
@@ -21,6 +34,8 @@ body{
 #menu #logo{
     margin-left: 40px;
     padding:0px;
+
+    color:black;
     font-size:48px;
     font-family: 'Lobster', cursive;
     letter-spacing: 2px;
@@ -115,64 +130,6 @@ body{
 #content #words-wrapper .vorcc-word#a{animation-delay: 0.5s;}
 #content #words-wrapper .vorcc-word#b{animation-delay: 1s;}
 #content #words-wrapper .vorcc-word#c{animation-delay: 1.5s;}
-
-/* ----- LOGIN.PHP -----*/
-.login-container {
-    width:350px;
-    height:470px;
-
-    margin: 0 auto;
-    margin-top:75px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-    box-sizing: border-box;
-
-}
-.login-container #title{
-    background-color: #39B1AC;
-    box-sizing: border-box;
-    padding:10px;
-    font-family: 'Lobster', cursive;
-    letter-spacing: 2px;
-    color:white;
-    font-size:23;
-}
-.login-container #form-container{
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-
-    display: inline-flex;
-    flex:1 1 auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.login-container #form-container .input-icon-wrapper{
-    
-}
-.login-container #form-container .form-input{
-    background-color: transparent;
-    width:179px;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-radius:0px;
-
-    padding:10px;
-    outline: none;
-}
-.login-container #form-container .input-mask{
-    background-color: #39B1AC;
-    width:201px;
-    height:1px;
-    z-index:999;
-    transform:scaleX(0);
-    transition: 0.2s;
-}
-.login-container #form-container .form-input:focus + .input-mask{
-    transform: scaleX(1);
-}
 
 #empresa, #pin {
     display: none;

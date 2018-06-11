@@ -31,7 +31,7 @@
 
             <div id="menu-nav">
                 <a href="perfil.php" class="nav-item"> <?php echo $_SESSION['nome']; ?> </a>
-                <a href="php/logout.php" id="button"> Quitar </a>
+                <a href="php/logout.php" id="button"> Quitar teste</a>
             </div>
         </nav>
 

@@ -1,0 +1,118 @@
+body{
+	background: #E2E2E2;
+}
+.form-container{
+	background-color: white;
+	
+	margin-top: 40px;
+	padding:15px;
+
+	display: inline-flex;
+	align-self:center;
+	flex-direction: column;
+
+	font-size:18px;
+
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.form-container .radio-wrapper{
+	background-color: transparent;
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.form-container .radio-wrapper .radio:checked + label:after{
+	transform:scaleX(1);
+}
+.form-container .radio-wrapper label{
+	border: 2px solid transparent;
+	padding:5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom:5px;
+	margin:2px;
+
+	color: #39B1AC;
+
+	cursor: pointer;
+}
+.form-container .radio-wrapper label:after{
+	content: "";
+	display: block;
+	position: relative;
+	bottom:-7px;
+	border-bottom:2px solid #39B1AC;
+
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: 0.3s;
+}
+.form-container .radio-wrapper label:hover:after{
+	transform: scaleX(1);
+}
+.form-container .icon-mask{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top:15px;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+
+    box-shadow: 0px 0.1px 0px 0 rgba(0, 0, 0, 0.2), 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-container .icon-mask .form-input{
+    background-color: transparent;
+    width:179px;
+    border:none;
+
+    padding:10px;
+    outline: none;
+}
+
+.form-container .icon-mask .fas{
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+
+    padding:7.8px;
+    font-size:20px;
+    color:#39B1AC;
+}
+
+.form-container .form-submit{
+    background:none;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #39B1AC;
+    
+    padding:7px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    color:#39B1AC;
+    font-weight: normal;
+    font-size: 16px;
+    cursor:pointer;
+    position: relative;
+    z-index:1;
+}
+.form-container .form-submit:hover{
+    transition:0.2s;
+    color:white;
+}
+.form-container .form-submit:after{
+    content: "";
+    background-color: #39B1AC;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index:-1;
+    transition: top 0.2s ease-in;
+}
+.form-container .form-submit:hover:after {
+    top:0;
+}

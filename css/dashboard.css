@@ -1,0 +1,28 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
+html{
+    height: 100%;
+}
+body{
+    background-color: white;
+    height:inherit;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    font-family: 'Lato', sans-serif;
+}
+#menu{
+    background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    flex: 0.15 1 auto;
+}
+#content{
+    display: inline-flex;
+    flex: 1 1 auto;
+}
