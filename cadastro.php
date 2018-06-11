@@ -50,7 +50,7 @@
                 <label for="fornecedor">Fornecedor</label>
                 </div>
             </div>
-            
+
             <div class="icon-mask">
                 <input type="text" placeholder="Nome Real" name="nome" class="form-input">
                 <i class="fas fa-user"></i>
@@ -142,7 +142,7 @@
                         echo 'roooow';
                     }
 
-                    $query = $conn->prepare("INSERT INTO dono VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
+                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
                     $query->bindValue(":nome", $_POST['nome']);
                     $query->bindValue(":cpf", $_POST['cpf']);
                     $query->bindValue(":login", $_POST['login']);
