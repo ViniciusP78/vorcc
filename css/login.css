@@ -1,3 +1,6 @@
+body{
+    background-color: #303035; 
+}
 .login-container {
     margin: 0 auto;
     display: flex;
@@ -5,14 +8,15 @@
     align-items: stretch;
     justify-content: stretch;
     box-sizing: border-box;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+    box-shadow: 0px 2px 2px 0px rgba(02, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 .login-container #title{
-    background-color: #39B1AC;
+    background-color: #39393E;
     box-sizing: border-box;
     padding:10px;
 
-    color:white;
+    color:#3CCDC8;
     font-size:23;
 }
 .login-container #form-container{
@@ -26,6 +30,7 @@
     justify-content: flex-start;
 }
 .login-container #form-container .icon-mask{
+    background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
     display: inline-flex;
     flex-direction: row-reverse;

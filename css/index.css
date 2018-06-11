@@ -5,7 +5,7 @@ html{
     height: 100%;
 }
 body{
-    background-color: #E2E2E2;
+    background-color: #303035;
     height:100%;
     margin: 0px;
 
@@ -35,7 +35,7 @@ body{
     margin-left: 40px;
     padding:0px;
 
-    color:black;
+    color: white;
     font-size:48px;
     font-family: 'Lobster', cursive;
     letter-spacing: 2px;
@@ -53,24 +53,10 @@ body{
     margin-right:15px;
 
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.7);
+    color: white;
 }
 #menu #menu-nav .nav-item:hover{
-    color: rgba(0, 0, 0, 0.8);
-}
-#menu #menu-nav .nav-item:after{
-    content:'';
-    display: block;
-    margin-top:3px;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: #39B1AC;
-
-    transform: scaleX(0);
-    transition: 0.3s;
-}
-#menu #menu-nav .nav-item:hover:after{
-    transform: scaleX(0.8);
+    color: #39B1AC;
 }
 #menu #menu-nav #button{
     padding:5px;
@@ -80,10 +66,10 @@ body{
     border-radius:20px;
     border-style: solid;
     border-width: 2px;
-    border-color: rgba(0, 0, 0, 0.7);
+    border-color: white;
 
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.7);
+    color: white;
 }
 #menu #menu-nav #button:hover{
     /* background-color: #537BD8; */
@@ -108,7 +94,7 @@ body{
 }
 #content #words-wrapper .vorcc-word{
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.7);
+    color: white;
     font-family: 'Lobster', cursive;
     letter-spacing: 2px;
     font-size: 48px;
