@@ -49,7 +49,8 @@
                     while($row = $query->fetch(PDO::FETCH_ASSOC)){
                         $_SESSION['id_empresa'] = $row['id_empresa'];
                         $_SESSION['cd_usuario'] = $row['cd_usuario'];
-                        $_SESSION['nome'] = $row['nm_usuario'];
+                        $_SESSION['nm_usuario'] = $row['nm_usuario'];
+                        $_SESSION['nr_acesso']  = $row['nr_acesso'];
                         header("Location: dash.php");
                     }
                 }else{

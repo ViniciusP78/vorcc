@@ -16,7 +16,7 @@ body{
     box-sizing: border-box;
     padding:10px;
 
-    color:#3CCDC8;
+    color: white;
     font-size:23;
 }
 .login-container #form-container{

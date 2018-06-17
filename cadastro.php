@@ -57,7 +57,7 @@
             </div>
 
             <div class="icon-mask">
-                <input type="number" placeholder="CPF (somente números)" name="cpf6" class="form-input">
+                <input type="number" placeholder="CPF (somente números)" name="cpf" class="form-input">
                 <i class="fas fa-address-card"></i>
             </div>
 
@@ -142,7 +142,7 @@
                         echo 'roooow';
                     }
 
-                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
+                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa, 1)");
                     $query->bindValue(":nome", $_POST['nome']);
                     $query->bindValue(":cpf", $_POST['cpf']);
                     $query->bindValue(":login", $_POST['login']);
@@ -178,29 +178,30 @@
 
                 if (!isset($cd_empresa)) {
                     echo "PIN inválido!";
-                } else {
-                    echo "5";
-                $query = $conn->prepare("INSERT INTO dono VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
-                $query->bindValue(":nome", $_POST['nome']);
-                $query->bindValue(":cpf", $_POST['cpf']);
-                $query->bindValue(":login", $_POST['login']);
-                $query->bindValue(":senha", md5($_POST['senha']));
-                $query->bindValue(":cd_empresa", $cd_empresa);
-                $query->execute();
+                } else{
+                    echo $cd_empresa;
 
-                /* SELECIONANDO O ID DA EMPRESA PRA FAZER O LOGIN E REDIRECIONAR PRA DASHBOARD */
-                $query = $conn->prepare("SELECT id_empresa, cd_usuario FROM dono WHERE nr_cpf = :cpf");
-                $query->bindValue(":cpf", $_POST['cpf']);
-                $query->execute();
+                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa, 0)");
+                    $query->bindValue(":nome", $_POST['nome']);
+                    $query->bindValue(":cpf", $_POST['cpf']);
+                    $query->bindValue(":login", $_POST['login']);
+                    $query->bindValue(":senha", md5($_POST['senha']));
+                    $query->bindValue(":cd_empresa", $cd_empresa);
+                    $query->execute();
+                    
+                    /* SELECIONANDO O ID DA EMPRESA PRA FAZER O LOGIN E REDIRECIONAR PRA DASHBOARD */
+                    $query = $conn->prepare("SELECT id_empresa, cd_usuario FROM dono WHERE nr_cpf = :cpf");
+                    $query->bindValue(":cpf", $_POST['cpf']);
+                    $query->execute();
 
-                while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                    echo "6";
-                    $_SESSION['nome'] = $_POST['nome'];
-                    $_SESSION['cd_usuario'] = $row['cd_usuario'];
-                    $_SESSION['id_empresa'] = $row['id_empresa'];
-                    echo $_SESSION['nome'].' '.$_SESSION['cd_usuario'].' '.$_SESSION['id_empresa'];
+                    while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                        echo "6";
+                        $_SESSION['nome'] = $_POST['nome'];
+                        $_SESSION['cd_usuario'] = $row['cd_usuario'];
+                        $_SESSION['id_empresa'] = $row['id_empresa'];
+                        echo $_SESSION['nome'].' '.$_SESSION['cd_usuario'].' '.$_SESSION['id_empresa'];
+                    }
                 }
-            }
             }
         } else {echo "Escreva os campo Tudo!;";}
         ?>

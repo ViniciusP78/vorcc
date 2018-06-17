@@ -33,12 +33,14 @@
             </div>
             <a class="menu-item" href="funcionarios.php"><i class="fas fa-users"></i><span>Funcionários</span></a>
             <a class="menu-item" href="orcamentos.php"><i class="fas fa-list"></i><span>Listas</span></a>
-            <a class="menu-item" href="produtos.php"><i class="fas fa-box-open"></i><span>Produtos</span></a>
+            <a class="menu-item active" href="produtos.php"><i class="fas fa-box-open"></i><span>Produtos</span></a>
             <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
         </nav>
 
         <main id="content">
-            
+            <table>
+                <tr><td>Nome</td><td>Valor</td></tr>
+            </table>
         </main>
     </body>
 </html>

@@ -20,7 +20,6 @@
             <span id="logo"> Vorcc </span>
 
             <div id="menu-nav">
-                <a href="#" class="nav-item"> Como usar </a>
                 <a href="cadastro.php" class="nav-item"> Criar conta </a>
                 <a href="login.php" id="button"> Entrar </a>
             </div>
