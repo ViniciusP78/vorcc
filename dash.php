@@ -26,16 +26,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet">
     </head>
     <body>
-        <nav id="menu">
-            <div id="menu-logo"><?php echo $nm_empresa ?>
-                <br>
-                <span style="font-size:13px;"><?php if($_SESSION['nr_acesso'] >= 1) echo 'Pin: ',$pin; ?></span>
-            </div>
-            <a class="menu-item" href="funcionarios.php"><i class="fas fa-users"></i><span>Funcionários</span></a>
-            <a class="menu-item" href="orcamentos.php"><i class="fas fa-list"></i><span>Listas</span></a>
-            <a class="menu-item" href="produtos.php"><i class="fas fa-box-open"></i><span>Produtos</span></a>
-            <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
-        </nav>
+        <?php include('menu.php'); ?>
 
         <main id="content">
             

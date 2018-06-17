@@ -51,6 +51,7 @@
                         $_SESSION['cd_usuario'] = $row['cd_usuario'];
                         $_SESSION['nm_usuario'] = $row['nm_usuario'];
                         $_SESSION['nr_acesso']  = $row['nr_acesso'];
+                        $_SESSION['bool_fornecedor'] = $row['bool_fornecedor'];
                         header("Location: dash.php");
                     }
                 }else{

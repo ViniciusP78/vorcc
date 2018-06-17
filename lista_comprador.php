@@ -30,12 +30,18 @@
         <?php include('menu.php'); ?>
 
         <main id="content">
+            <header id="content-menu">
+                <h1> Suas listas </h1>
+                <a href="#" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
+                <a href="#" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>
+            </header>
             <table cellspacing="0">
-                <tr><td class="table-title">Nome</td><td class="table-title">CPF</td><td class="table-title">Acesso</td></tr>
-                <tr><td class="table-cell-dark">Abner</td><td class="table-cell-dark">123.324.23</td><td class="table-cell-dark">0</td></tr>
-                <tr><td class="table-cell">João</td><td class="table-cell">234.212.32</td><td class="table-cell">0</td></tr>
-                <tr><td class="table-cell-dark">Pedro</td><td class="table-cell-dark">564.742.85</td><td class="table-cell-dark">0</td></tr>
+                <tr><td class="table-title">Nome</td><td class="table-title">Itens</td><td class="table-title">Respostas</td></tr>
+                <tr><td class="table-cell-dark">Laticíneos</td><td class="table-cell-dark">7</td><td class="table-cell-dark">0</td></tr>
+                <tr><td class="table-cell">Roupas tamanho G</td><td class="table-cell">11</td><td class="table-cell">0</td></tr>
+                <tr><td class="table-cell-dark">Brinquedos</td><td class="table-cell-dark">24</td><td class="table-cell-dark">0</td></tr>
             </table>
+            <br>
         </main>
     </body>
 </html>

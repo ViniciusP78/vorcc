@@ -9,6 +9,9 @@ html{
     border-right:2px solid #39B1AC !important;
     box-shadow: inset 0 4px 80px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.hidden{
+    background-color: transparent;
+}
 body{
     background-color: #303035;
     height:inherit;
@@ -74,10 +77,38 @@ body{
 }
 /* ------------------- CONTEÚDO --------------------- */
 #content{
+    padding-left:100px;
+    padding-right:100px;
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+#content #content-menu{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#content .content-menu-item{
+    background-color: #148853;
+
+    border-radius:3px;
+
     display: inline-flex;
     justify-content: center;
-    padding-top:100px;
-    flex: 1 1 auto;
+    align-items: center;
+
+    margin-left:10px;
+    padding:7px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    text-decoration: none;
+    color:white;
+}
+#content .content-menu-item i{
+    font-size:22px;
+    margin-right: 3px;
 }
 #content table{
     border:1px solid rgba(0, 0, 0, 0.2);
