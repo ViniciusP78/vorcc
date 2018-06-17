@@ -14,6 +14,10 @@
         $pin = $row['vl_pin'];
         $fornecedor = $row["bool_fornecedor"];
     }
+    if($fornecedor == 0) {
+      header("Location: dash.php");
+    }
+
 ?>
 <!doctype html>
 <html>
@@ -32,51 +36,47 @@
                 <br>
                 <span style="font-size:13px;"><?php if($_SESSION['nr_acesso'] >= 1) echo 'Pin: ',$pin; ?></span>
             </div>
-            <a class="menu-item" href="criarlista.php"><i class="fas fa-users"></i><span>Criar Lista</span></a>
-            <br>
-            <br>
-
-            <?php
-              $query = $conn->prepare("SELECT cd_lista, nm_lista FROM tb_lista WHERE id_empresa = :emp");
-              $query->bindValue(":emp", $_SESSION['id_empresa']);
-              $query->execute();
-              while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                  $cd_lista = $row['cd_lista'];
-                  $nm_lista = $row['nm_lista'];
-                  echo "<a href='orcamentos.php?id=$cd_lista'>$nm_lista</a>";
-
-              }
-            ?>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <a class="menu-item" href="dash.php"><i class="fas fa-box-open"></i><span>Voltar</span></a>
+            <a class="menu-item" href="funcionarios.php"><i class="fas fa-users"></i><span>Funcionários</span></a>
+            <a class="menu-item" href="search.php"><i class="fas fa-list"></i><span>Procurar Listas</span></a>
+            <a class="menu-item" href="cotacoes.php"><i class="fas fa-box-open"></i><span>Cotações</span></a>
             <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
         </nav>
 
-        <main id="content">
+        <main id="content" style="display:block">
           <?php
             if(isset($_GET['id'])) {
               $id = $_GET['id'];
-              $query = $conn->prepare("SELECT nm_lista FROM tb_lista WHERE cd_lista = :list");
-              $query->bindValue(":list", $id);
+              $query = $conn->prepare("SELECT nm_lista, id_empresa FROM tb_lista WHERE cd_lista = :id");
+              $query->bindValue(":id", $id);
               $query->execute();
+
               while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                echo $row['nm_lista']."<br>";
+                  echo $row['nm_lista']."<br>";
+                  $emp = $row['id_empresa'];
               }
 
-              $query = $conn->prepare("SELECT nm_lista_item, nm_lista_item_qtd FROM tb_lista_item WHERE id_lista = :list");
-              $query->bindValue(":list", $id);
+              $query = $conn->prepare("SELECT `cd_lista_item`,`nm_lista_item`, `nm_lista_item_qtd` FROM `tb_lista_item` WHERE id_lista = :id");
+              $query->bindValue(":id", $id);
               $query->execute();
-              while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                echo $row['nm_lista_item']."    ";
-                echo $row['nm_lista_item_qtd']."<br>";
-              }
-            }
 
+              $i = 0;
+               echo '<form method="post" action="enviarcot.php">';
+              while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                $i++;
+                  echo $row['nm_lista_item']."   qtd:".$row['nm_lista_item_qtd'];
+                  echo "<input type='number' name='cot$i' placeholder='cot$i'><br>";
+                  echo "<input type='hidden' name='relcot$i' value='".$row['cd_lista_item']."'>";
+
+              }
+              echo "<input type='hidden' name='counter' value='$i'>";
+              echo "<input type='hidden' name='idlista' value='$id'>";
+              echo "<input type='hidden' name='emp' value='$emp'>";
+              echo "<input type='submit' name='submit' value='cotar'></form>";
+
+            } else {
+              header("Location: dash.php"); }
           ?>
+
         </main>
     </body>
 </html>

@@ -142,7 +142,7 @@
                         echo 'roooow';
                     }
 
-                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa, 1)");
+                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
                     $query->bindValue(":nome", $_POST['nome']);
                     $query->bindValue(":cpf", $_POST['cpf']);
                     $query->bindValue(":login", $_POST['login']);
@@ -181,14 +181,14 @@
                 } else{
                     echo $cd_empresa;
 
-                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa, 0)");
+                    $query = $conn->prepare("INSERT INTO tb_usuario VALUES(null, :nome, :cpf, :login, :senha, :cd_empresa)");
                     $query->bindValue(":nome", $_POST['nome']);
                     $query->bindValue(":cpf", $_POST['cpf']);
                     $query->bindValue(":login", $_POST['login']);
                     $query->bindValue(":senha", md5($_POST['senha']));
                     $query->bindValue(":cd_empresa", $cd_empresa);
                     $query->execute();
-                    
+
                     /* SELECIONANDO O ID DA EMPRESA PRA FAZER O LOGIN E REDIRECIONAR PRA DASHBOARD */
                     $query = $conn->prepare("SELECT id_empresa, cd_usuario FROM dono WHERE nr_cpf = :cpf");
                     $query->bindValue(":cpf", $_POST['cpf']);
