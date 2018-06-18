@@ -40,7 +40,9 @@
             }
 
             if(isset($_POST['login']) && isset($_POST['senha'])){
-                $query = $conn->prepare("SELECT * FROM tb_usuario WHERE nm_senha = :senha AND nm_login = :login");
+                $query = $conn->prepare("SELECT * FROM tb_usuario 
+                                        JOIN tb_empresa ON tb_usuario.id_empresa = tb_empresa.cd_empresa
+                                        WHERE nm_senha = :senha AND nm_login = :login");
                 $query->bindValue(':senha', md5($_POST['senha']));
                 $query->bindValue(':login', $_POST['login']);
                 $query->execute();

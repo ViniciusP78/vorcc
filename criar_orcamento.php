@@ -49,34 +49,6 @@
                 <button type="button" class="form-add" onclick="add()"><i class="fas fa-plus-circle"></i>&nbspAdicionar item</button>
                 <input type="submit" name="submit" value="Criar lista" class="form-submit">
             </form>
-
-          <script>
-
-            var i = 2;
-
-            function add(){
-              var container = document.getElementById("container");
-              var input = document.createElement("input");
-                input.type = "text";
-                input.name = "item" + i;
-                input.placeholder = "Item " + i;
-                input.className = "form-input";
-              container.appendChild(document.createElement("br"));
-              container.appendChild(input);
-
-              var qtd = document.createElement("input");
-                qtd.type = "number";
-                qtd.name = "qtditem" + i;
-                qtd.placeholder = "qtd";
-                qtd.style.width = "40px";
-              container.appendChild(qtd);
-
-              document.getElementById("counter").value = i;
-              i++;
-            }
-          </script>
-
-
         </main>
     </body>
 </html>

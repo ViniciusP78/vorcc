@@ -13,6 +13,7 @@
         $nm_empresa = $row['nm_empresa'];
         $pin = $row['vl_pin'];
     }
+
 ?>
 <!doctype html>
 <html>
@@ -31,15 +32,21 @@
 
         <main id="content">
             <header id="content-menu">
-                <h1> Suas listas </h1>
+                <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
+                <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
                 <a href="#" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
-                <a href="#" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>
+                <?php 
+                    if($_SESSION['bool_fornecedor'] == 0){
+                        echo '<a href="criarlista.php" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>';
+                    }
+                ?>
             </header>
             <table cellspacing="0">
                 <tr><td class="table-title">Nome</td><td class="table-title">Itens</td><td class="table-title">Respostas</td></tr>
-                <tr><td class="table-cell-dark">Laticíneos</td><td class="table-cell-dark">7</td><td class="table-cell-dark">0</td></tr>
-                <tr><td class="table-cell">Roupas tamanho G</td><td class="table-cell">11</td><td class="table-cell">0</td></tr>
-                <tr><td class="table-cell-dark">Brinquedos</td><td class="table-cell-dark">24</td><td class="table-cell-dark">0</td></tr>
+                <?php
+                    $file = ($_SESSION['bool_fornecedor'] == 0) ? 'php/exibir_listas_comprador.php' : 'php/exibir_listas_todas.php';
+                    include($file);
+                ?>
             </table>
             <br>
         </main>

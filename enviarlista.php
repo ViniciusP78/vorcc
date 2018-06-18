@@ -26,34 +26,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet">
     </head>
     <body>
-        <nav id="menu">
-            <div id="menu-logo"><?php echo $nm_empresa ?>
-                <br>
-                <span style="font-size:13px;"><?php if($_SESSION['nr_acesso'] >= 1) echo 'Pin: ',$pin; ?></span>
-            </div>
-            <a class="menu-item" href="criarlista.php"><i class="fas fa-users"></i><span>Criar Lista</span></a>
-            <br>
-            <br>
-
-            <?php
-              $query = $conn->prepare("SELECT cd_lista, nm_lista FROM tb_lista WHERE id_empresa = :emp");
-              $query->bindValue(":emp", $_SESSION['id_empresa']);
-              $query->execute();
-              while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                  $cd_lista = $row['cd_lista'];
-                  $nm_lista = $row['nm_lista'];
-                  echo "<a href='orcamentos.php?id=$cd_lista'>$nm_lista</a>";
-
-              }
-            ?>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <a class="menu-item" href="dash.php"><i class="fas fa-box-open"></i><span>Voltar</span></a>
-            <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
-        </nav>
+        <?php include('menu.php'); ?>
 
         <main id="content">
 
