@@ -1,4 +1,4 @@
-<?php 
+<?php
     include('php/conexao.php');
 
     if(!isset($_SESSION['nm_usuario'])){
@@ -29,13 +29,26 @@
     <body>
         <?php include('menu.php'); ?>
 
+
+
         <main id="content">
-            <table cellspacing="0">
-                <tr><td class="table-title">Nome</td><td class="table-title">CPF</td><td class="table-title">Acesso</td></tr>
-                <tr><td class="table-cell-dark">Abner</td><td class="table-cell-dark">123.324.23</td><td class="table-cell-dark">0</td></tr>
-                <tr><td class="table-cell">João</td><td class="table-cell">234.212.32</td><td class="table-cell">0</td></tr>
-                <tr><td class="table-cell-dark">Pedro</td><td class="table-cell-dark">564.742.85</td><td class="table-cell-dark">0</td></tr>
-            </table>
+
+          <?php
+          $query = $conn->prepare("SELECT nm_usuario, nr_cpf from tb_usuario where id_empresa = :emp");
+          $query->bindValue(":emp", $_SESSION['id_empresa']);
+          $query->execute();
+
+          while($row = $query->fetch(PDO::FETCH_ASSOC)){
+              echo $row['nm_usuario'];
+              echo "   ";
+              echo $row['nr_cpf'];
+              echo "<br>";
+          }
+
+          ?>
+
+
+
         </main>
     </body>
 </html>

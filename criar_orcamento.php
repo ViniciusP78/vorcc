@@ -33,7 +33,7 @@
                 <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
                 <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
                 <a href="listas.php" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
-                <?php 
+                <?php
                     if($_SESSION['bool_fornecedor'] == 0){
                         echo '<a href="criarlista.php" class="content-menu-item"><i class="far fa-plus-square"></i>Adicionar lista </a>';
                         echo '<a href="verorcamentos.php" class="content-menu-item"><i class="far fa-plus-square"></i>Ver orçamentos</a>';
@@ -49,8 +49,8 @@
                             if(isset($_GET['id'])) {
                                 $id = $_GET['id'];
                                 echo '<input type="hidden" name="idlista" value="'.$id.'">';
-                                $query = $conn->prepare("SELECT * 
-                                                        FROM tb_lista 
+                                $query = $conn->prepare("SELECT *
+                                                        FROM tb_lista
                                                         JOIN tb_lista_item ON tb_lista_item.id_lista = tb_lista.cd_lista
                                                         WHERE tb_lista.cd_lista = :id");
                                 $query->bindValue(":id", $id);
@@ -65,7 +65,9 @@
                             }
                         ?>
 
-                        <tr class="table-result"><td>Valor total</td><td colspan="3" class="table-result-cell">R$36,00</td></tr>
+                        <tr class="table-result"><td>Valor total</td><td colspan="3" class="table-result-cell">
+                          
+                        </td></tr>
                     </table>
                 </div>
                 <br>

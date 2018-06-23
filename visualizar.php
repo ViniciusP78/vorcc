@@ -14,9 +14,7 @@
         $pin = $row['vl_pin'];
         $fornecedor = $row["bool_fornecedor"];
     }
-    if($fornecedor == 0) {
-      header("Location: dash.php");
-    }
+
 
 ?>
 <!doctype html>
@@ -43,6 +41,17 @@
         </nav>
 
         <main id="content" style="display:block">
+          <header id="content-menu">
+              <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
+              <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
+              <a href="listas.php" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
+              <?php
+                  if($_SESSION['bool_fornecedor'] == 0){
+                      echo '<a href="criarlista.php" class="content-menu-item"><i class="far fa-plus-square"></i>Adicionar lista </a>';
+
+                  }
+              ?>
+          </header>
 			<?php
 				if(isset($_GET['id'])) {
 					$id = $_GET['id'];
@@ -63,19 +72,25 @@
 					echo '<form method="post" action="enviarcot.php">';
 					while($row = $query->fetch(PDO::FETCH_ASSOC)){
 						$i++;
-						echo $row['nm_lista_item']."   qtd:".$row['nm_lista_item_qtd'];
-						echo "<input type='number' name='cot$i' placeholder='cot$i'><br>";
-						echo "<input type='hidden' name='relcot$i' value='".$row['cd_lista_item']."'>";
-					}
-					echo "<input type='hidden' name='counter' value='$i'>";
-					echo "<input type='hidden' name='idlista' value='$id'>";
-					echo "<input type='hidden' name='emp' value='$emp'>";
-					echo "<input type='submit' name='submit' value='cotar'></form>";
+						echo $row['nm_lista_item']."   qtd:".$row['nm_lista_item_qtd']."<br>";
 
-					} else {
-						header("Location: dash.php"); 
 					}
+
+				} else {
+					header("Location: dash.php");
+				}
 			?>
+
+      <?php
+        $query = $conn->prepare("SELECT nm_lista, id_empresa FROM tb_lista WHERE cd_lista = :id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+          echo $row['nm_lista']."<br>";
+          $emp = $row['id_empresa'];
+        }
+      ?>
 
         </main>
     </body>

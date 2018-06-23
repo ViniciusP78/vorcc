@@ -28,6 +28,6 @@
         while($row = $count_query->fetch(PDO::FETCH_ASSOC)){
             $num_repostas = $row['total']; // ESSE É O TOTAL DE COTAÇÕES PARA LISTA
         }
-        echo '<tr><td class="table-cell-dark">'.$nm_lista.'</td><td class="table-cell-dark">'.$num_itens.'</td><td class="table-cell-dark">'.$num_repostas.'</td></tr>';
+        echo '<tr><td class="table-cell-dark"><a href="visualizar.php?id='.$cd_lista.'">'.$nm_lista.'</a></td><td class="table-cell-dark">'.$num_itens.'</td><td class="table-cell-dark">'.$num_repostas.'</td></tr>';
     }
 ?>

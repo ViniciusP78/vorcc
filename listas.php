@@ -1,4 +1,4 @@
-<?php 
+<?php
     include('php/conexao.php');
 
     if(!isset($_SESSION['nm_usuario'])){
@@ -34,8 +34,8 @@
             <header id="content-menu">
                 <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
                 <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
-                <a href="#" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
-                <?php 
+                
+                <?php
                     if($_SESSION['bool_fornecedor'] == 0){
                         echo '<a href="criarlista.php" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>';
                         echo '<a href="ver_orcamentos.php" class="content-menu-item"><i class="fas fa-dollar-sign"></i>Ver orçamentos</a>';
