@@ -1,4 +1,4 @@
-<?php 
+<?php
     include('php/conexao.php');
 
     if(!isset($_SESSION['nm_usuario'])){
@@ -13,6 +13,7 @@
         $nm_empresa = $row['nm_empresa'];
         $pin = $row['vl_pin'];
     }
+
 ?>
 <!doctype html>
 <html>
@@ -29,7 +30,7 @@
         <?php include('menu.php'); ?>
 
         <main id="content">
-            
+
         </main>
     </body>
 </html>

@@ -38,6 +38,7 @@
                 <?php 
                     if($_SESSION['bool_fornecedor'] == 0){
                         echo '<a href="criarlista.php" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>';
+                        echo '<a href="ver_orcamentos.php" class="content-menu-item"><i class="fas fa-dollar-sign"></i>Ver orçamentos</a>';
                     }
                 ?>
             </header>

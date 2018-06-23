@@ -13,6 +13,22 @@
         $nm_empresa = $row['nm_empresa'];
         $pin = $row['vl_pin'];
     }
+
+    /* SELECIONANDO O NOME DA LISTA*/
+    $query = $conn->prepare("SELECT nm_lista, nm_empresa
+                            FROM tb_cotacao 
+                            JOIN tb_lista ON tb_cotacao.id_lista = tb_lista.cd_lista
+                            JOIN tb_empresa ON tb_cotacao.id_empresa = tb_empresa.cd_empresa
+                            WHERE cd_cotacao = :cd");
+    $query->bindValue(":cd", $_GET['cotacao']);
+    $query->execute();
+
+    $nm_lista = "";
+    $nm_fornecedor = "";
+    while($row = $query->fetch(PDO::FETCH_ASSOC)){
+        $nm_lista = $row['nm_lista'];
+        $nm_fornecedor = $row['nm_empresa'];
+    }
 ?>
 <!doctype html>
 <html>
@@ -36,42 +52,37 @@
                 <?php 
                     if($_SESSION['bool_fornecedor'] == 0){
                         echo '<a href="criarlista.php" class="content-menu-item"><i class="far fa-plus-square"></i>Adicionar lista </a>';
-                        echo '<a href="verorcamentos.php" class="content-menu-item"><i class="far fa-plus-square"></i>Ver orçamentos</a>';
+                        echo '<a href="ver_orcamentos.php" class="content-menu-item"><i class="fas fa-dollar-sign"></i>Ver orçamentos</a>';
                     }
                 ?>
             </header>
-            <form action="enviarcot.php" method="post">
                 <div id="container">
-                    <h2>Carnes</h2>
+                    <h2><?php echo $nm_lista.' (Orçamento de '.$nm_fornecedor.')'; ?></h2>
                     <table cellspacing="0">
 						<tr><td class="table-title">Nome</td><td class="table-title">Quantidade</td><td class="table-title">Preço un.</td><td class="table-title">Preço total</td></tr>
                         <?php
-                            if(isset($_GET['id'])) {
-                                $id = $_GET['id'];
-                                echo '<input type="hidden" name="idlista" value="'.$id.'">';
-                                $query = $conn->prepare("SELECT * 
-                                                        FROM tb_lista 
-                                                        JOIN tb_lista_item ON tb_lista_item.id_lista = tb_lista.cd_lista
-                                                        WHERE tb_lista.cd_lista = :id");
+                            if(isset($_GET['cotacao'])) {
+                                $id = $_GET['cotacao'];
+                                $query = $conn->prepare("SELECT nm_lista_item, nm_lista_item_qtd, vl_cotacao
+                                                        FROM tb_cotacao_item
+                                                        JOIN tb_lista_item ON tb_lista_item.cd_lista_item = tb_cotacao_item.id_lista_item
+                                                        WHERE tb_cotacao_item.id_cotacao = :id");
                                 $query->bindValue(":id", $id);
                                 $query->execute();
 
-                                $counter = 1;
+                                $total = 0;
                                 while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                                    echo '<tr><td class="table-cell">'.$row['nm_lista_item'].'</td><td class="table-cell">'.$row['nm_lista_item_qtd'].'</td><td class="table-cell">R$<input type="number" placeholder="Valor unitário" class="valor" name="valor'.$counter.'" pattern="[0-9]" step="0.01"></td><td class="table-cell">R$<span id="orcTotal"><input type="hidden" name="cd_item'.$counter.'" value="'.$row['cd_lista_item'].'"</span></td>';
-                                    $counter++;
+                                    $total += ($row['vl_cotacao'] * $row['nm_lista_item_qtd']);
+                                    echo '<tr><td class="table-cell">'.$row['nm_lista_item'].'</td><td class="table-cell">'.$row['nm_lista_item_qtd'].'</td><td class="table-cell">R$'.$row['vl_cotacao'].'</td><td class="table-cell">R$'.($row['vl_cotacao'] * $row['nm_lista_item_qtd']).'</td>';
                                 }
-                                echo '<input type="hidden" name="counter" value="'.$counter.'">';
+
                             }
                         ?>
 
-                        <tr class="table-result"><td>Valor total</td><td colspan="3" class="table-result-cell">R$36,00</td></tr>
+                        <tr class="table-result"><td>Valor total</td><td colspan="3" class="table-result-cell">R$<?php echo $total; ?></td></tr>
                     </table>
                 </div>
                 <br>
-                <input type="submit" name="submit" value="Enviar orçamento" class="form-submit">
-                </form>
-            </form>
         </main>
     </body>
 </html>

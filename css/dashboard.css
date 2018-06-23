@@ -134,6 +134,9 @@ body{
 #content table .table-cell{
     background-color: transparent;
 }
+#content table .table-result{
+    border-top: 1px solid #0A74B8;
+}
 
 /* --------------------- CRIAR LISTA ----------------------*/
 
@@ -196,4 +199,26 @@ form .form-submit{
 
     font-size: 18px;
     color:white;
+}
+
+/* CRIAÇÃO DE ORÇAMENTO */
+
+.valor{
+    background-color: transparent;
+    width:90px;
+
+    outline:none;
+    border:none;
+    border-bottom: 23px solid #148853;
+
+    font-size:16px;
+    color:white;
+}
+.valor::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+.valor::-webkit-inner-outer-button{
+    -webkit-appearance:none;
+    margin:0;
 }

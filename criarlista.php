@@ -42,7 +42,7 @@
             <form method="post" action="enviarlista.php">
                 <div id="container">
                     <input type="text" name="lista" placeholder="Nome da lista" id="form-title-input"><br><br>
-                    <input type="hidden" name="counter" id="counter" value="5">
+                    <input type="hidden" name="counter" id="counter" value="1">
                     <input type="text" name="item1" placeholder="Item 1" class="form-input"><input type="number" name="qtditem1" placeholder="qtd" style="width:40px">
                 </div>
                 <br>
@@ -52,27 +52,27 @@
 
           <script>
 
-            var i = 2;
+            var i = 1;
 
             function add(){
-              var container = document.getElementById("container");
-              var input = document.createElement("input");
-                input.type = "text";
-                input.name = "item" + i;
-                input.placeholder = "Item " + i;
-                input.className = "form-input";
-              container.appendChild(document.createElement("br"));
-              container.appendChild(input);
+                i++;  
+                var container = document.getElementById("container");
+                var input = document.createElement("input");
+                  input.type = "text";
+                  input.name = "item" + i;
+                  input.placeholder = "Item " + i;
+                  input.className = "form-input";
+                  container.appendChild(document.createElement("br"));
+                  container.appendChild(input);
 
-              var qtd = document.createElement("input");
-                qtd.type = "number";
-                qtd.name = "qtditem" + i;
-                qtd.placeholder = "qtd";
-                qtd.style.width = "40px";
-              container.appendChild(qtd);
+                  var qtd = document.createElement("input");
+                    qtd.type = "number";
+                    qtd.name = "qtditem" + i;
+                    qtd.placeholder = "qtd";
+                    qtd.style.width = "40px";
+                  container.appendChild(qtd);
 
-              document.getElementById("counter").value = i;
-              i++;
+                  document.getElementById("counter").value = i;
             }
           </script>
 

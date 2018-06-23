@@ -32,6 +32,7 @@
 
         <?php
           if(isset($_POST['submit'])){
+            echo $_POST['counter'].'<br>';
 
             $query = $conn->prepare("INSERT INTO tb_lista VALUES (null, :nm_lista, :usuario, :emp)");
             $query->bindValue(":nm_lista", $_POST['lista']);

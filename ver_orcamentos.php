@@ -1,4 +1,4 @@
-<?php
+<?php 
     include('php/conexao.php');
 
     if(!isset($_SESSION['nm_usuario'])){
@@ -13,6 +13,7 @@
         $nm_empresa = $row['nm_empresa'];
         $pin = $row['vl_pin'];
     }
+
 ?>
 <!doctype html>
 <html>
@@ -24,39 +25,30 @@
         <link rel="stylesheet" href="fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
     </head>
     <body>
-        <nav id="menu">
-            <div id="menu-logo"><?php echo $nm_empresa ?>
-                <br>
-                <span style="font-size:13px;"><?php if($_SESSION['nr_acesso'] >= 1) echo 'Pin: ',$pin; ?></span>
-            </div>
-            <a class="menu-item" href="criarlista.php"><i class="fas fa-users"></i><span>Criar Lista</span></a>
-            <br>
-            <br>
-
-            <?php
-              $query = $conn->prepare("SELECT cd_lista, nm_lista FROM tb_lista WHERE id_empresa = :emp");
-              $query->bindValue(":emp", $_SESSION['id_empresa']);
-              $query->execute();
-              while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                  $cd_lista = $row['cd_lista'];
-                  $nm_lista = $row['nm_lista'];
-                  echo "<a href='orcamentos.php?id=$cd_lista'>$nm_lista</a>";
-
-              }
-            ?>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <a class="menu-item" href="dash.php"><i class="fas fa-box-open"></i><span>Voltar</span></a>
-            <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
-        </nav>
+        <?php include('menu.php'); ?>
 
         <main id="content">
-
+            <header id="content-menu">
+                <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
+                <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
+                <a href="#" class="content-menu-item"> <i class="fas fa-eye"></i> Ver listas </a>
+                <?php 
+                    if($_SESSION['bool_fornecedor'] == 0){
+                        echo '<a href="criarlista.php" class="content-menu-item"> <i class="far fa-plus-square"></i>Adicionar lista </a>';
+                        echo '<a href="ver_orcamentos.php" class="content-menu-item"><i class="fas fa-dollar-sign"></i>Ver orçamentos</a>';
+                    }
+                ?>
+            </header>
+            <table cellspacing="0">
+                <tr><td class="table-title">Fornecedor</td><td class="table-title">Lista</td><td class="table-title">Valor total</td></tr>
+                <?php
+                    include('php/exibir_orcamentos.php');
+                ?>
+            </table>
+            <br>
         </main>
     </body>
 </html>

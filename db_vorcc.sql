@@ -1,25 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 3.4.9
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 17-Jun-2018 às 15:09
--- Versão do servidor: 5.7.19
--- PHP Version: 5.6.31
+-- Servidor: localhost
+-- Tempo de Geração: 20/06/2018 às 14h32min
+-- Versão do Servidor: 5.5.20
+-- Versão do PHP: 5.3.9
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_vorcc`
+-- Banco de Dados: `db_vorcc`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +26,6 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `tb_cotacao`
 --
 
-DROP TABLE IF EXISTS `tb_cotacao`;
 CREATE TABLE IF NOT EXISTS `tb_cotacao` (
   `cd_cotacao` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
@@ -40,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `tb_cotacao` (
   KEY `id_usuario` (`id_usuario`),
   KEY `id_empresa` (`id_empresa`),
   KEY `id_empresa_lista` (`id_empresa_lista`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -48,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `tb_cotacao` (
 -- Estrutura da tabela `tb_cotacao_item`
 --
 
-DROP TABLE IF EXISTS `tb_cotacao_item`;
 CREATE TABLE IF NOT EXISTS `tb_cotacao_item` (
   `cd_cotacao_item` int(11) NOT NULL AUTO_INCREMENT,
   `id_cotacao` int(11) NOT NULL,
@@ -57,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `tb_cotacao_item` (
   PRIMARY KEY (`cd_cotacao_item`),
   KEY `id_cotacao` (`id_cotacao`),
   KEY `id_lista_item` (`id_lista_item`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -65,16 +61,15 @@ CREATE TABLE IF NOT EXISTS `tb_cotacao_item` (
 -- Estrutura da tabela `tb_empresa`
 --
 
-DROP TABLE IF EXISTS `tb_empresa`;
 CREATE TABLE IF NOT EXISTS `tb_empresa` (
   `cd_empresa` int(11) NOT NULL AUTO_INCREMENT,
   `nm_empresa` varchar(45) NOT NULL,
   `nr_cnpj` int(11) NOT NULL,
-  `dt_criacao` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dt_criacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bool_fornecedor` tinyint(1) NOT NULL,
   `vl_pin` varchar(45) NOT NULL,
   PRIMARY KEY (`cd_empresa`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Extraindo dados da tabela `tb_empresa`
@@ -95,7 +90,6 @@ INSERT INTO `tb_empresa` (`cd_empresa`, `nm_empresa`, `nr_cnpj`, `dt_criacao`, `
 -- Estrutura da tabela `tb_lista`
 --
 
-DROP TABLE IF EXISTS `tb_lista`;
 CREATE TABLE IF NOT EXISTS `tb_lista` (
   `cd_lista` int(11) NOT NULL AUTO_INCREMENT,
   `nm_lista` varchar(45) NOT NULL,
@@ -104,7 +98,15 @@ CREATE TABLE IF NOT EXISTS `tb_lista` (
   PRIMARY KEY (`cd_lista`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_empresa` (`id_empresa`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `tb_lista`
+--
+
+INSERT INTO `tb_lista` (`cd_lista`, `nm_lista`, `id_usuario`, `id_empresa`) VALUES
+(1, 'Lista', 24, 19),
+(2, 'lista', 24, 19);
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,6 @@ CREATE TABLE IF NOT EXISTS `tb_lista` (
 -- Estrutura da tabela `tb_lista_item`
 --
 
-DROP TABLE IF EXISTS `tb_lista_item`;
 CREATE TABLE IF NOT EXISTS `tb_lista_item` (
   `cd_lista_item` int(11) NOT NULL AUTO_INCREMENT,
   `nm_lista_item` varchar(45) NOT NULL,
@@ -121,7 +122,18 @@ CREATE TABLE IF NOT EXISTS `tb_lista_item` (
   `id_lista` int(11) NOT NULL,
   PRIMARY KEY (`cd_lista_item`),
   KEY `id_lista` (`id_lista`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `tb_lista_item`
+--
+
+INSERT INTO `tb_lista_item` (`cd_lista_item`, `nm_lista_item`, `nm_lista_item_desc`, `nm_lista_item_qtd`, `id_lista`) VALUES
+(1, 'Produto1', NULL, 12, 1),
+(2, 'Produto2', NULL, 4, 1),
+(3, 'Produto3', NULL, 23, 1),
+(4, 'Produto4', NULL, 17, 1),
+(5, 'aadd', NULL, -4, 2);
 
 -- --------------------------------------------------------
 
@@ -129,7 +141,6 @@ CREATE TABLE IF NOT EXISTS `tb_lista_item` (
 -- Estrutura da tabela `tb_usuario`
 --
 
-DROP TABLE IF EXISTS `tb_usuario`;
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `cd_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nm_usuario` varchar(45) NOT NULL,
@@ -139,17 +150,16 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_empresa` int(11) NOT NULL,
   PRIMARY KEY (`cd_usuario`),
   KEY `id_empresa` (`id_empresa`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Extraindo dados da tabela `tb_usuario`
 --
 
 INSERT INTO `tb_usuario` (`cd_usuario`, `nm_usuario`, `nr_cpf`, `nm_login`, `nm_senha`, `id_empresa`) VALUES
-(22, 'Abner Lima ', 45454, 'Abner', 'b2f5ff47436671b6e533d8dc3614845d', 14),
+(22, 'Abner Lima ', 45454, 'Abner', '202CB962AC59075B964B07152D234B70', 14),
 (23, 'Lima Abner', 6666788, 'bucheq', '6e11873b9d9d94a44058bef5747735ce', 14),
-(24, 'liticia', 585858, 'leleh50', '1906ad9d4ce4b6b7b8d3990001f204c3', 19);
-COMMIT;
+(24, 'liticia', 585858, 'leleh50', '202CB962AC59075B964B07152D234B70', 19);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
