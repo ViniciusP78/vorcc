@@ -29,26 +29,22 @@
     <body>
         <?php include('menu.php'); ?>
 
-
-
         <main id="content">
+            <h1>Funcionários</h1>
+            <table cellspacing="0">
+            <tr><td class="table-title">Nome</td><td class="table-title">CPF</td><td class="table-title">Nível de acesso</td></tr>
+            <?php
+                $query = $conn->prepare("SELECT * FROM tb_usuario WHERE id_empresa = :emp");
+                $query->bindValue(":emp", $_SESSION['id_empresa']);
+                $query->execute();
 
-          <?php
-          $query = $conn->prepare("SELECT nm_usuario, nr_cpf from tb_usuario where id_empresa = :emp");
-          $query->bindValue(":emp", $_SESSION['id_empresa']);
-          $query->execute();
+                while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                    $acesso = ($row['nr_acesso'] == 0) ? 'Comum' : 'Administrador';
 
-          while($row = $query->fetch(PDO::FETCH_ASSOC)){
-              echo $row['nm_usuario'];
-              echo "   ";
-              echo $row['nr_cpf'];
-              echo "<br>";
-          }
-
-          ?>
-
-
-
+                    echo '<tr><td class="table-cell-dark">'.$row['nm_usuario'].'</td><td class="table-cell-dark">'.$row['nr_cpf'].'</td><td class="table-cell-dark">'.$acesso.'</td></tr>';
+                }
+            ?>
+            </table>
         </main>
     </body>
 </html>

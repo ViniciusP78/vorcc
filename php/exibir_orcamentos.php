@@ -11,7 +11,7 @@
 
         while($row = $query->fetch(PDO::FETCH_ASSOC)){
             /* SELECIONANDO A SOMA DAS COTAÇÕES UNITÁRIAS */
-            $query2 = $conn->prepare("SELECT SUM(vl_cotacao) AS totalSomado
+            $query2 = $conn->prepare("SELECT SUM(vl_cotacao)
                                     FROM tb_cotacao_item
                                     WHERE id_cotacao = :cd_cotacao
                                     ");

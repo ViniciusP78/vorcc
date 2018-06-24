@@ -29,18 +29,9 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet">
     </head>
     <body>
-        <nav id="menu">
-            <div id="menu-logo"><?php echo $nm_empresa ?>
-                <br>
-                <span style="font-size:13px;"><?php if($_SESSION['nr_acesso'] >= 1) echo 'Pin: ',$pin; ?></span>
-            </div>
-            <a class="menu-item" href="funcionarios.php"><i class="fas fa-users"></i><span>Funcionários</span></a>
-            <a class="menu-item" href="search.php"><i class="fas fa-list"></i><span>Procurar Listas</span></a>
-            <a class="menu-item" href="cotacoes.php"><i class="fas fa-box-open"></i><span>Cotações</span></a>
-            <a class="menu-item" href="php/logout.php"><i class="fas fa-times-circle"></i><span>Sair</span></a>
-        </nav>
+        <?php include('menu.php'); ?>
 
-        <main id="content" style="display:block">
+        <main id="content">
           <header id="content-menu">
               <!-- O PHP EXIBE TEXTOS DIFERENTES DE PARA O CASO DE O USUÁRIO SER UM FORNECEDOR !-->
               <h1> <?php if($_SESSION['bool_fornecedor'] == 0) {echo 'Suas listas';} else{echo 'Todas as listas';} ?></h1>
@@ -52,46 +43,33 @@
                   }
               ?>
           </header>
-			<?php
-				if(isset($_GET['id'])) {
-					$id = $_GET['id'];
-					$query = $conn->prepare("SELECT nm_lista, id_empresa FROM tb_lista WHERE cd_lista = :id");
-					$query->bindValue(":id", $id);
-					$query->execute();
+    			<?php
+    				if(isset($_GET['id'])) {
+    					$id = $_GET['id'];
+    					$query = $conn->prepare("SELECT nm_lista, id_empresa FROM tb_lista WHERE cd_lista = :id");
+    					$query->bindValue(":id", $id);
+    					$query->execute();
 
-					while($row = $query->fetch(PDO::FETCH_ASSOC)){
-						echo $row['nm_lista']."<br>";
-						$emp = $row['id_empresa'];
-					}
+    					while($row = $query->fetch(PDO::FETCH_ASSOC)){
+    						echo '<h2>'.$row['nm_lista']."</h2><br>";
+    						$emp = $row['id_empresa'];
+    					}
 
-					$query = $conn->prepare("SELECT `cd_lista_item`,`nm_lista_item`, `nm_lista_item_qtd` FROM `tb_lista_item` WHERE id_lista = :id");
-					$query->bindValue(":id", $id);
-					$query->execute();
+    					$query = $conn->prepare("SELECT `cd_lista_item`,`nm_lista_item`, `nm_lista_item_qtd` FROM `tb_lista_item` WHERE id_lista = :id");
+    					$query->bindValue(":id", $id);
+    					$query->execute();
 
-					$i = 0;
-					echo '<form method="post" action="enviarcot.php">';
-					while($row = $query->fetch(PDO::FETCH_ASSOC)){
-						$i++;
-						echo $row['nm_lista_item']."   qtd:".$row['nm_lista_item_qtd']."<br>";
+              echo '<table><tr><td class="table-title">Item</td><td class="table-title">Quantidade</td></tr>';
+    					while($row = $query->fetch(PDO::FETCH_ASSOC)){
+    						echo '<tr><td class="table-cell">'.$row['nm_lista_item'].'</td><td class="table-cell">'.$row['nm_lista_item_qtd'].'</td></tr>';
+    					}
+              echo '</table>';
+    				} else {
+    					header("Location: dash.php");
+    				}
+    			?>
 
-					}
-
-				} else {
-					header("Location: dash.php");
-				}
-			?>
-
-      <?php
-        $query = $conn->prepare("SELECT nm_lista, id_empresa FROM tb_lista WHERE cd_lista = :id");
-        $query->bindValue(":id", $id);
-        $query->execute();
-
-        while($row = $query->fetch(PDO::FETCH_ASSOC)){
-          echo $row['nm_lista']."<br>";
-          $emp = $row['id_empresa'];
-        }
-      ?>
-
+        <a href="php/apagar_lista.php?id=<?php echo $_GET['id']; ?>" class="form-submit" id="delete-btn">Apagar lista</a>
         </main>
     </body>
 </html>

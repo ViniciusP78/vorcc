@@ -188,7 +188,7 @@ form input[type="number"]{
 form input[type="number"]::placeholder{
     color:white;
 }
-form .form-submit{
+.form-submit{
     background-color: #148853;
     padding:12px;
     padding-left:17px;
@@ -221,4 +221,18 @@ form .form-submit{
 .valor::-webkit-inner-outer-button{
     -webkit-appearance:none;
     margin:0;
+}
+
+/* */
+
+#delete-btn{
+    background-color: #AA3939;
+    max-width: 100px;
+    margin-top:30px;
+
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+
+    text-decoration: none;
 }
