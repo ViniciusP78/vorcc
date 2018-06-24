@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
     </head>
-    <body>
+    <body style="overflow:hidden;">
         <?php
         session_start();
         if(isset($_SESSION['nome'])){
@@ -31,6 +31,7 @@
                 <p class="vorcc-word" id="b"><span>Orç</span>amentos e</p>
                 <p class="vorcc-word" id="c"><span>C</span>otações</p>
             </div>
+            <img src="imgs/vorcc.png"/ style="position:absolute;width:1100px;height:auto;right:-50px;z-index:-1">
         </main>
     </body>
 </html>
