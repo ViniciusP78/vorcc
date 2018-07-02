@@ -66,7 +66,7 @@
                         ?>
 
                         <tr class="table-result"><td>Valor total</td><td colspan="3" class="table-result-cell">
-                          
+
                         </td></tr>
                     </table>
                 </div>

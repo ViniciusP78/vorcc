@@ -35,12 +35,12 @@
         </form>
 
         <?php
-            if(isset($_SESSION['nome'])){
+            if(isset($_SESSION['cd_usuario'])){
                 header("Location: dash.php");
             }
 
             if(isset($_POST['login']) && isset($_POST['senha'])){
-                $query = $conn->prepare("SELECT * FROM tb_usuario 
+                $query = $conn->prepare("SELECT * FROM tb_usuario
                                         JOIN tb_empresa ON tb_usuario.id_empresa = tb_empresa.cd_empresa
                                         WHERE nm_senha = :senha AND nm_login = :login");
                 $query->bindValue(':senha', md5($_POST['senha']));

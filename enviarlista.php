@@ -59,7 +59,7 @@
                 echo "Campo Nulo<br>";
               }
             }
-
+            header("Location: listas.php");
           }
         ?>
 

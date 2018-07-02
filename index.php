@@ -12,7 +12,7 @@
     <body style="overflow:hidden;">
         <?php
         session_start();
-        if(isset($_SESSION['nome'])){
+        if(isset($_SESSION['cd_usuario'])){
             header("Location: dash.php");
         }
         ?>

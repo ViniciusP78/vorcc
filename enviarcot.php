@@ -62,6 +62,7 @@
                   $query->bindValue(":valor", $valor);
                   $query->execute();
                   echo '<h1 style="color:#2C8437">SUCESSO !</h1>';
+                  header("Location: listas.php");
                 }
               }
           ?>

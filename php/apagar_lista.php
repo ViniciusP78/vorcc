@@ -23,3 +23,5 @@
 	$query = $conn->prepare("DELETE FROM tb_cotacao WHERE i_lista = :id");
 	$query->bindValue(':id', $_GET['id']);
 	$query->execute();
+
+	header("Location: ../listas.php");
